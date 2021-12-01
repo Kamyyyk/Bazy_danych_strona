@@ -10,11 +10,6 @@ def append_to_list(table: str, login: str, password: str, funds: int):
     print("Dodaje elementy do tabeli")
 
 
-# @app.route("/test")
-# def def_test():
-#     return "dupa"
-
-
 @app.route("/test")
 def fetch_funds():
     funds = check_funds_command()
