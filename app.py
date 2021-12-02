@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from commands import cli, create_command, add_command, fetch_command, delete_command, login_command, \
+from commands import cli, add_command, fetch_command, fetch_all_command, login_command, \
     check_funds_command
 
 app = Flask(__name__)
@@ -13,7 +13,8 @@ def append_to_list(table: str, login: str, password: str, funds: int):
 @app.route("/test")
 def fetch_funds():
     funds = check_funds_command()
-    return funds
+    for i in funds:
+        print(i)
 
 
 @app.route("/list/<town>")
@@ -24,7 +25,7 @@ def fetch_list(town: str):
 
 @app.route("/list/<table>")
 def fetch_list_all(table: str):
-    users = fetch_list_all(table)
+    users = fetch_all_command(table)
     return users
 
 

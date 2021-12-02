@@ -1,7 +1,7 @@
 import click
 from database import Database
 from os import getenv
-from repositories.employes import fetch_list, delete_table, fetch_all, check_funds
+from repositories.users import fetch_list, delete_table, fetch_all, check_funds, append_to_database
 
 
 @click.group()
@@ -23,7 +23,9 @@ def create_command(table_name: str):
 @click.argument('password')
 @click.argument('funds')
 def add_command(table: str, login: str, password: str, funds: int):
+    add = append_to_database(table, login,password,funds)
     print(f'{login} has been added to table {table}')
+    return add
 
 
 @click.command(name='list')
@@ -39,9 +41,11 @@ def fetch_command(town: str):
 @click.argument('table')
 def fetch_all_command(table: str):
     print(f"Wszysto z tabeli {table} :")
-    return fetch_all(table)
+    fetch_everything = fetch_all(table)
+    for users in fetch_everything:
+        print(users)
 
-
+@click.command(name='funds')
 def check_funds_command():
     query = check_funds()
     return str(query)

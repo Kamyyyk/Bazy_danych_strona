@@ -12,14 +12,14 @@ def fetch_list(town: str):
     return db.fetch_table('employes', town=town)
 
 
-def delete_table(table: str):
-    db = Database(getenv('DB'))
-    return db.delete_table(table)
-
-
 def fetch_all(table: str):
     db = Database(getenv('DB'))
     return db.fetch_all(table)
+
+
+def delete_table(table: str):
+    db = Database(getenv('DB'))
+    return db.delete_table(table)
 
 
 def check_funds():
